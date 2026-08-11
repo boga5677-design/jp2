@@ -1,14 +1,12 @@
-name: Android CI
+name: NekoNihon Android CI
 
 on:
   push:
     branches:
       - main
-
   pull_request:
     branches:
       - main
-
   workflow_dispatch:
 
 permissions:
@@ -19,75 +17,60 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. 取得專案
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      # 2. Java 17
       - name: Set up JDK 17
         uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
 
-      # 3. Gradle 8.11.1
       - name: Set up Gradle 8.11.1
         uses: gradle/actions/setup-gradle@v6
         with:
           gradle-version: '8.11.1'
 
-      # 4. 顯示版本
       - name: Verify Java and Gradle
         run: |
-          echo "===== Java ====="
           java -version
-
-          echo "===== Gradle ====="
           gradle --version
 
-      # 5. 移除英文版殘留資料檔
-      - name: Remove legacy PetLingo data
-        run: |
-          rm -f app/src/main/java/com/petlingo/app/data/PetData.kt
-          echo "Legacy PetData.kt removed"
-
-      # 6. 建立 Gradle Wrapper
       - name: Generate Gradle Wrapper
-        run: |
-          gradle wrapper --gradle-version 8.11.1
+        run: gradle wrapper --gradle-version 8.11.1
 
-      # 7. gradlew 執行權限
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
-      # 8. 清除舊 Build
-      - name: Clean project
+      - name: Clean old APK outputs
         run: |
-          ./gradlew clean --no-daemon
+          rm -rf app/build/outputs/apk
+          rm -rf output
+          mkdir -p output
 
-      # 9. 編譯 Debug APK
-      - name: Build Debug APK
+      - name: Build NekoNihon APK
+        run: ./gradlew clean assembleDebug --stacktrace --no-daemon
+
+      - name: Prepare single APK
         run: |
-          ./gradlew assembleDebug --stacktrace --no-daemon
+          APK="app/build/outputs/apk/debug/app-debug.apk"
+          test -f "$APK"
+          cp "$APK" output/NekoNihon.apk
 
-      # 10. 編譯 Release APK
-      - name: Build Release APK
-        run: |
-          ./gradlew assembleRelease --stacktrace --no-daemon
+          COUNT=$(find output -maxdepth 1 -type f -name "*.apk" | wc -l)
 
-      # 11. 顯示產生的 APK
-      - name: List generated APKs
-        run: |
-          echo "===== APK files ====="
-          find app/build/outputs/apk -type f -name "*.apk" -print
+          if [ "$COUNT" -ne 1 ]; then
+            echo "ERROR: Expected exactly one APK, found $COUNT"
+            exit 1
+          fi
 
-      # 12. 上傳 APK
-      - name: Upload APKs
+          echo "Generated APK:"
+          ls -lh output/NekoNihon.apk
+
+      - name: Upload NekoNihon APK
         uses: actions/upload-artifact@v4
         with:
-          name: Nihongo-Go-APK
-          path: |
-            app/build/outputs/apk/debug/*.apk
-            app/build/outputs/apk/release/*.apk
+          name: NekoNihon-APK
+          path: output/NekoNihon.apk
           if-no-files-found: error
           retention-days: 30
