@@ -76,7 +76,7 @@ fun HomeScreen(
                 }
 
                 Text(
-                    text = "Nihongo Go",
+                    text = "NekoNihon",
                     style = MaterialTheme.typography.headlineLarge,
                     fontWeight = FontWeight.Black,
                     color = MaterialTheme.colorScheme.onBackground

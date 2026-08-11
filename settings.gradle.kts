@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PetLingo"
+rootProject.name = "NekoNihon"
 include(":app")

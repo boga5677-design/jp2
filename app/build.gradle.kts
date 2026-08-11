@@ -12,8 +12,8 @@ android {
         applicationId = "com.nihongogo.learning"
         minSdk = 26
         targetSdk = 35
-        versionCode = 30
-        versionName = "6.4.6"
+        versionCode = 31
+        versionName = "1.5.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -21,7 +21,7 @@ android {
 
     signingConfigs {
         create("stableUpdate") {
-            // Nihongo Go uses its own signing key so it is a separate app from PetLingo.
+            // NekoNihon retains the Nihongo Go applicationId/signing key so existing Japanese installs can update, while remaining separate from PetLingo.
             storeFile = rootProject.file("signing/nihongo-go-update.jks")
             storePassword = "nihongogo2026"
             keyAlias = "nihongogo"
