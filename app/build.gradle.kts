@@ -12,8 +12,8 @@ android {
         applicationId = "com.nihongogo.learning"
         minSdk = 26
         targetSdk = 35
-        versionCode = 32
-        versionName = "1.7.0"
+        versionCode = 33
+        versionName = "1.8.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
