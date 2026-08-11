@@ -5,15 +5,15 @@ plugins {
 }
 
 android {
-    namespace = "com.petlingo.app"
+    namespace = "com.nekonihon.app"
     compileSdk = 35
 
     defaultConfig {
         applicationId = "com.nihongogo.learning"
         minSdk = 26
         targetSdk = 35
-        versionCode = 31
-        versionName = "1.5.0"
+        versionCode = 32
+        versionName = "1.7.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -34,14 +34,6 @@ android {
             signingConfig = signingConfigs.getByName("stableUpdate")
         }
 
-        release {
-            signingConfig = signingConfigs.getByName("stableUpdate")
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
     }
 
     compileOptions {
@@ -60,6 +52,14 @@ android {
 
     packaging {
         resources.excludes += "/META-INF/{AL2.0,LGPL2.1}"
+    }
+}
+
+// NekoNihon is intentionally a single-APK project.
+// Disable the Android release variant entirely so assembleRelease cannot produce an APK.
+androidComponents {
+    beforeVariants(selector().withBuildType("release")) { variantBuilder ->
+        variantBuilder.enable = false
     }
 }
 

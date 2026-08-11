@@ -1,5 +1,5 @@
 <resources>
-    <style name="Theme.PetLingo" parent="android:style/Theme.Material.Light.NoActionBar">
+    <style name="Theme.NekoNihon" parent="android:style/Theme.Material.Light.NoActionBar">
         <item name="android:fontFamily">sans</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">#FFF9F2</item>
