@@ -13,3 +13,10 @@
 - 明確顯示帳戶與雲端同步未啟用。
 - versionCode = 24
 - versionName = 6.4.0-local-settings
+
+## Japanese life-learning update
+- Removed English US/UK pronunciation selection remnants from Japanese settings.
+- Removed the default GEPT/word-level preference from settings.
+- Added a new "生活日語" learning section based on the scene structure of MEXT's "つながるひろがる にほんごでのくらし" (便利語句 / A1 / A2 / B1).
+- Added Traditional Chinese learning goals and practice phrases adapted for in-app practice, with a link back to the official MEXT source.
+- Removed legacy PetData.kt that referenced the obsolete English data model.

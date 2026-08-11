@@ -33,6 +33,7 @@ import com.petlingo.app.ui.screens.FavoritesScreen
 import com.petlingo.app.ui.screens.HistoryScreen
 import com.petlingo.app.ui.screens.HomeScreen
 import com.petlingo.app.ui.screens.ListeningSetupScreen
+import com.petlingo.app.ui.screens.LifeJapaneseScreen
 import com.petlingo.app.ui.screens.SpeakingTestScreen
 import com.petlingo.app.ui.screens.ListeningPracticeScreen
 import com.petlingo.app.ui.screens.LearningScreen
@@ -231,8 +232,13 @@ fun PetLingoApp(
                     onVocabulary = { navController.navigate("vocabulary") },
                     onPhrase = { navController.navigate("phrases") },
                     onListeningPractice = { navController.navigate("listeningPractice") },
-                    onSpeakingPractice = { navController.navigate("speakingPractice") }
+                    onSpeakingPractice = { navController.navigate("speakingPractice") },
+                    onLifeJapanese = { navController.navigate("lifeJapanese") }
                 )
+            }
+
+            composable("lifeJapanese") {
+                LifeJapaneseScreen(onBack = { navController.popBackStack() })
             }
 
             composable("listeningPractice") {

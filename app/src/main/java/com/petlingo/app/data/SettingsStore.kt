@@ -5,10 +5,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 data class AppSettings(
-    val accent: String = "日語",
     val speechRate: Float = 1.0f,
     val defaultQuestionCount: Int = 20,
-    val defaultLevel: String = "全部",
     val soundEffects: Boolean = true,
     val autoReadQuestion: Boolean = false,
     val showExplanation: Boolean = true,
@@ -28,10 +26,8 @@ class SettingsStore(context: Context) {
     fun update(value: AppSettings) {
         _settings.value = value
         prefs.edit()
-            .putString("accent", value.accent)
             .putFloat("speechRate", value.speechRate)
             .putInt("defaultQuestionCount", value.defaultQuestionCount)
-            .putString("defaultLevel", value.defaultLevel)
             .putBoolean("soundEffects", value.soundEffects)
             .putBoolean("autoReadQuestion", value.autoReadQuestion)
             .putBoolean("showExplanation", value.showExplanation)
@@ -49,10 +45,8 @@ class SettingsStore(context: Context) {
     }
 
     private fun load() = AppSettings(
-        accent = prefs.getString("accent", "日語") ?: "日語",
         speechRate = prefs.getFloat("speechRate", 1.0f),
         defaultQuestionCount = prefs.getInt("defaultQuestionCount", 20),
-        defaultLevel = prefs.getString("defaultLevel", "全部") ?: "全部",
         soundEffects = prefs.getBoolean("soundEffects", true),
         autoReadQuestion = prefs.getBoolean("autoReadQuestion", false),
         showExplanation = prefs.getBoolean("showExplanation", true),

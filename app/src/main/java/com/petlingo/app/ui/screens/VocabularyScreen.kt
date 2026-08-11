@@ -104,7 +104,8 @@ fun VocabularyScreen(
                                 Icon(if (word.id in favorites) Icons.Default.Favorite else Icons.Default.FavoriteBorder, contentDescription = "收藏")
                             }
                             IconButton(onClick = {
-                                onToggleNote(StudyNote(noteKey, "日文單字", "單字", word.english, "${word.note}\n${word.chinese}", "${word.level}・${word.academic}"))
+                                onToggleNote(StudyNote(noteKey, "日文單字", "單字", word.english, "${word.note}
+${word.chinese}", "${word.level}・${word.academic}"))
                             }) {
                                 Icon(if (noteKey in noteKeys) Icons.Default.Star else Icons.Default.StarBorder, contentDescription = "筆記")
                             }

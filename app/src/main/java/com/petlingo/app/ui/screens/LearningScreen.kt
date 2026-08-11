@@ -7,6 +7,7 @@ import androidx.compose.material.icons.filled.Chat
 import androidx.compose.material.icons.filled.Headphones
 import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.Mic
+import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,15 +20,17 @@ fun LearningScreen(
     onVocabulary: () -> Unit,
     onPhrase: () -> Unit,
     onListeningPractice: () -> Unit,
-    onSpeakingPractice: () -> Unit
+    onSpeakingPractice: () -> Unit,
+    onLifeJapanese: () -> Unit
 ) {
     Column(
         Modifier.fillMaxSize().padding(18.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp)
     ) {
         Text("學習", style = MaterialTheme.typography.headlineMedium, fontWeight = FontWeight.Bold)
-        Text("日文單字、實用語句、聽力與口說練習集中在這裡。")
+        Text("日文單字、生活情境、實用語句、聽力與口說練習集中在這裡。")
 
+        LearningCard("生活日語", "便利語句・A1・A2・B1 真實生活場景", Icons.Default.Language, onLifeJapanese)
         LearningCard("日文單字學習", "JLPT N5・N4 基礎", Icons.Default.MenuBook, onVocabulary)
         LearningCard("實用語句", "生活・旅行常用句", Icons.Default.Chat, onPhrase)
         LearningCard("聽力練習", "聽單字發音，再確認中文意思", Icons.Default.Headphones, onListeningPractice)

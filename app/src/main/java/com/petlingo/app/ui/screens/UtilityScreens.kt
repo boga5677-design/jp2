@@ -331,7 +331,7 @@ fun SettingsScreen(
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        text = "調整發音、測驗、顯示與學習偏好。",
+                        text = "調整聲音、測驗、顯示與學習偏好。",
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
@@ -343,29 +343,6 @@ fun SettingsScreen(
                 title = "發音與聲音",
                 icon = Icons.Default.VolumeUp
             ) {
-                Text(
-                    text = "預設發音",
-                    fontWeight = FontWeight.Bold
-                )
-
-                ChoiceRow(
-                    choices = listOf(
-                        "日語"
-                    ),
-                    selected = settings.accent,
-                    onSelected = { value ->
-                        onUpdate(
-                            settings.copy(
-                                accent = value
-                            )
-                        )
-                    }
-                )
-
-                Spacer(
-                    modifier = Modifier.height(8.dp)
-                )
-
                 Text(
                     text = "語音速度：${
                         String.format(
@@ -446,28 +423,6 @@ fun SettingsScreen(
 
                 Spacer(
                     modifier = Modifier.height(10.dp)
-                )
-
-                Text(
-                    text = "預設單字級數",
-                    fontWeight = FontWeight.Bold
-                )
-
-                ChoiceRow(
-                    choices = listOf(
-                        "全部",
-                        "初級",
-                        "中級",
-                        "中高級"
-                    ),
-                    selected = settings.defaultLevel,
-                    onSelected = { value ->
-                        onUpdate(
-                            settings.copy(
-                                defaultLevel = value
-                            )
-                        )
-                    }
                 )
 
                 SettingSwitch(
